@@ -1,6 +1,7 @@
 from itertools import islice
 
 import pandas as pd
+import matplotlib
 import matplotlib.pylab as plt
 from matplotlib.lines import Line2D
 import seaborn as sns
@@ -82,6 +83,18 @@ def letter_dist_heatmap(df):
     yax.set_ticks(np.arange(0.5, 26.5, 1))
     _ = yax.set_ticklabels(SCRABBLE.keys())
 
+
+def plot_just_k(df):
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    loc = matplotlib.ticker.MultipleLocator(1)
+    ax.bar(df.index, df['k'])
+    ax.set_ylim((0, 300))
+    ax.xaxis.set_major_locator(loc)
+    ax.set_xlim(-0.5, 9.5)
+    
+    plt.show()
+    
 
 def points_legend(fig, loc):
     ''' Make a custom legend tying point colors to point values '''
